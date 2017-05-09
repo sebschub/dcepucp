@@ -1,0 +1,13 @@
+Package: dcepucp
+Type: Package
+Title: Generate urban canopy parameters for DCEP
+Version: 0.1.0
+Author: Sebastian Schubert
+Maintainer: Sebastian Schubert <sebastian.schubert@geo.hu-berlin.de>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: RNetCDF
+RoxygenNote: 6.0.1
