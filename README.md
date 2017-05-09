@@ -27,7 +27,7 @@ Installation
 Install the package from github using the devtools package with
 ``` r
 # install.packages("devtools")
-devtools::install_github("tidyverse/dplyr")
+devtools::install_github("sebschub/dcepucp")
 ```
  
 Usage
