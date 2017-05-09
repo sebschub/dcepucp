@@ -54,6 +54,6 @@ ucp <- upar(berlin_grid, fr_urb = berlin_fr_urb,
             fr_roof = berlin_fr_roof, w_street = berlin_w_street,
             w_build = berlin_w_build)
 
-# save urban parameters in `ucp.nc`
+# save urban parameters in ucp.nc
 upar2nc("ucp.nc", ucp)
 ```
