@@ -50,6 +50,13 @@ An object of class \code{ugrid}.
 Function to define an urban grid including COSMO-CLM grid parameters. Some
 consistency checks are done.
 }
+\note{
+In \link{upar2nc}, \code{dlon} and \code{startlon_tot} as well as
+  \code{dlat} and \code{startlat_tot} are used to define the dimensions
+  "rlon" and "rlat", respectively; \code{ke_uhl} and \code{hhl_uhl} for
+  "uheight1"; \code{n_udir} and \code{angle_udir} for "udir"; \code{n_uclass}
+  for "uclass".
+}
 \examples{
 grid <- ugrid(pollat = 40., pollon = -70.6,
               startlat_tot = -0.882, startlon_tot = -0.882,

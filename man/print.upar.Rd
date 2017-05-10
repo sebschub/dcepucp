@@ -4,10 +4,12 @@
 \alias{print.upar}
 \title{Print urban parameters information}
 \usage{
-\method{print}{upar}(ucp)
+\method{print}{upar}(x, ...)
 }
 \arguments{
-\item{ucp}{Object of class \code{upar}.}
+\item{x}{An object of class \code{upar}.}
+
+\item{...}{Other parameters not used here.}
 }
 \description{
 Prints details of an \code{upar} object.
@@ -18,6 +20,6 @@ ucps <- upar(berlin_grid, fr_urb = berlin_fr_urb,
              fr_uclass = berlin_fr_uclass, fr_udir = berlin_fr_udir,
              fr_roof = berlin_fr_roof, w_street = berlin_w_street,
              w_build = berlin_w_build)
-print.upar(ucps)
-ucps                       # also calls print.ucps
+# calls print.ucps
+print(ucps)
 }

@@ -4,10 +4,12 @@
 \alias{print.ugrid}
 \title{Print urban grid information}
 \usage{
-\method{print}{ugrid}(grid)
+\method{print}{ugrid}(x, ...)
 }
 \arguments{
-\item{grid}{Object of class \code{ugrid}.}
+\item{x}{Object of class \code{ugrid}.}
+
+\item{...}{Other parameters not used here.}
 }
 \description{
 Prints parameters of an urban grid.
@@ -20,6 +22,6 @@ grid <- ugrid(pollat = 40., pollon = -70.6,
               ke_uhl = 8, hhl_uhl = c(0, 5, 10, 15, 20, 25, 30, 35,40),
               n_uclass = 1,
               n_udir = 2, angle_udir = c(0., 90.))
-print.ugrid(grid)
-grid                       # also calls print.ugrid
+# calls print.ugrid
+print(grid)
 }

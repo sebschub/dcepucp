@@ -23,12 +23,13 @@ nc_def_var(nc, varname, dimensions, standard_name, long_name, units)
 The variable is defined and attributes used in COSMO-CLM are added.
 }
 \examples{
-nc <- create.nc("rot_lon.nc")
-dim.def.nc(nc, dimname = "rlon", dimlength = ucp$grid$ie_tot)
-nc_def_var(nc, varname = "rlon", dimensions = "rlon",
-           standard_name = "grid_longitude",
-           long_name = "rotated longitude",
-           units = "degrees")
-close.nc(nc)
+nc <- RNetCDF::create.nc("rot_lon.nc")
+RNetCDF::dim.def.nc(nc, dimname = "rlon", dimlength = 100)
+dcepucp:::nc_def_var(nc, varname = "rlon", dimensions = "rlon",
+                     standard_name = "grid_longitude",
+                     long_name = "rotated longitude",
+                     units = "degrees")
+RNetCDF::var.put.nc(nc, variable ="rlon", data = 1:100)
+RNetCDF::close.nc(nc)
 }
 \keyword{internal}

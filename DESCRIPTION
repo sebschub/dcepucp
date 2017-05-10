@@ -1,13 +1,17 @@
 Package: dcepucp
 Type: Package
-Title: Generate urban canopy parameters for DCEP
-Version: 0.1.0
+Title: Generate an urban canopy parameters file for DCEP
+Version: 0.2.0
 Author: Sebastian Schubert
 Maintainer: Sebastian Schubert <sebastian.schubert@geo.hu-berlin.de>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: This package facilitates the generation of a NetCDF urban canopy
+    parameter file for DCEP as implemented in COSMO-CLM 5. Consistency checks 
+    of the input fields are done. The NetCDF file includes the correct dimension
+    and variables including a standard set of attributes. Propoerties of the 
+    rotated north pole are stored as well.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 2.10)
 Imports: RNetCDF
 RoxygenNote: 6.0.1

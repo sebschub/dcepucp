@@ -9,16 +9,17 @@
 #' @param long_name String of long name.
 #' @param units String of units.
 #'
-#' @import RNetCDF
+#' @importFrom RNetCDF var.def.nc att.put.nc
 #' @keywords internal
 #' @examples
-#' nc <- create.nc("rot_lon.nc")
-#' dim.def.nc(nc, dimname = "rlon", dimlength = ucp$grid$ie_tot)
-#' nc_def_var(nc, varname = "rlon", dimensions = "rlon",
-#'            standard_name = "grid_longitude",
-#'            long_name = "rotated longitude",
-#'            units = "degrees")
-#' close.nc(nc)
+#' nc <- RNetCDF::create.nc("rot_lon.nc")
+#' RNetCDF::dim.def.nc(nc, dimname = "rlon", dimlength = 100)
+#' dcepucp:::nc_def_var(nc, varname = "rlon", dimensions = "rlon",
+#'                      standard_name = "grid_longitude",
+#'                      long_name = "rotated longitude",
+#'                      units = "degrees")
+#' RNetCDF::var.put.nc(nc, variable ="rlon", data = 1:100)
+#' RNetCDF::close.nc(nc)
 nc_def_var <- function(nc, varname, dimensions, standard_name, long_name, units) {
   var.def.nc(nc, varname = varname, vartype = "NC_FLOAT", dimensions = dimensions)
   att.put.nc(nc, variable = varname, name = "standard_name", type = "NC_CHAR",
@@ -42,7 +43,7 @@ nc_def_var <- function(nc, varname, dimensions, standard_name, long_name, units)
 #' @param ucp \code{upar} object.
 #'
 #' @export
-#' @import RNetCDF
+#' @importFrom RNetCDF create.nc close.nc dim.def.nc var.def.nc att.put.nc var.put.nc
 #' @examples
 #' ucps <- upar(berlin_grid, fr_urb = berlin_fr_urb,
 #'              fr_uclass = berlin_fr_uclass, fr_udir = berlin_fr_udir,

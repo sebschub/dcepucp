@@ -27,6 +27,11 @@
 #'   axis.
 #'
 #' @return An object of class \code{ugrid}.
+#' @note In \link{upar2nc}, \code{dlon} and \code{startlon_tot} as well as
+#'   \code{dlat} and \code{startlat_tot} are used to define the dimensions
+#'   "rlon" and "rlat", respectively; \code{ke_uhl} and \code{hhl_uhl} for
+#'   "uheight1"; \code{n_udir} and \code{angle_udir} for "udir"; \code{n_uclass}
+#'   for "uclass".
 #' @export
 #'
 #' @examples
@@ -72,7 +77,8 @@ ugrid <- function(pollat, pollon,
 #'
 #' Prints parameters of an urban grid.
 #'
-#' @param grid Object of class \code{ugrid}.
+#' @param x Object of class \code{ugrid}.
+#' @param ... Other parameters not used here.
 #'
 #' @export
 #'
@@ -84,19 +90,19 @@ ugrid <- function(pollat, pollon,
 #'               ke_uhl = 8, hhl_uhl = c(0, 5, 10, 15, 20, 25, 30, 35,40),
 #'               n_uclass = 1,
 #'               n_udir = 2, angle_udir = c(0., 90.))
-#' print.ugrid(grid)
-#' grid                       # also calls print.ugrid
-print.ugrid <- function(grid) {
-  stopifnot(class(grid) == "ugrid")
+#' # calls print.ugrid
+#' print(grid)
+print.ugrid <- function(x, ...) {
+  stopifnot(class(x) == "ugrid")
 
-  out1 <- format(c(grid$pollat, grid$pollon))
+  out1 <- format(c(x$pollat, x$pollon))
   cat("   # Rotated pole coordinates\n")
   cat(paste0("   Latitude:  ", out1[2], "\n"))
   cat(paste0("   Longitude: ", out1[1], "\n"))
 
-  out2 <- format(c(grid$dlat, grid$dlon))
-  out3 <- format(c(grid$startlat_tot, grid$startlon_tot))
-  out4 <- format(c(grid$ie_tot, grid$je_tot))
+  out2 <- format(c(x$dlat, x$dlon))
+  out3 <- format(c(x$startlat_tot, x$startlon_tot))
+  out4 <- format(c(x$ie_tot, x$je_tot))
   cat("   # Horizontal grid\n")
   cat(paste0("   Grid spacing latitude : ", out2[1], "\n"))
   cat(paste0("   Grid spacing longitude: ", out2[2], "\n"))
@@ -106,14 +112,14 @@ print.ugrid <- function(grid) {
   cat(paste0("   Grid cells longitude: ", out4[2], "\n"))
 
   cat("   # Urban height levels\n")
-  cat(paste0("   Number of urban main levels: ", grid$ke_uhl, "\n"))
-  cat(paste0("   Height of half levels      : ", paste(grid$hhl_uhl, collapse = " "), "\n"))
+  cat(paste0("   Number of urban main levels: ", x$ke_uhl, "\n"))
+  cat(paste0("   Height of half levels      : ", paste(x$hhl_uhl, collapse = " "), "\n"))
 
-  out5 <- format(c(grid$n_uclass, grid$n_udir))
+  out5 <- format(c(x$n_uclass, x$n_udir))
   cat("   # Other urban dimensions\n")
   cat(paste0("   Number of urban classes    : ", out5[1], "\n"))
   cat(paste0("   Number of street directions: ", out5[2], "\n"))
-  cat(paste0("   Angles of street direction : ", paste(grid$angle_udir, collapse = " "), "\n"))
+  cat(paste0("   Angles of street direction : ", paste(x$angle_udir, collapse = " "), "\n"))
 }
 
 #' Rotated latitude
@@ -145,7 +151,7 @@ rotated_latitude <- function(grid) {
 #' Calculate rotated longitude values from the \code{startlon_tot}, \code{dlon}
 #' and \code{ie_tot} of the input.
 #'
-#' @param Object of class \code{ugrid}.
+#' @param grid Object of class \code{ugrid}.
 #'
 #' @return Vector of rotated longitude values.
 #' @export
@@ -327,7 +333,8 @@ upar <- function(grid,
 #'
 #' Prints details of an \code{upar} object.
 #'
-#' @param ucp Object of class \code{upar}.
+#' @param x An object of class \code{upar}.
+#' @param ... Other parameters not used here.
 #'
 #' @export
 #'
@@ -337,15 +344,15 @@ upar <- function(grid,
 #'              fr_uclass = berlin_fr_uclass, fr_udir = berlin_fr_udir,
 #'              fr_roof = berlin_fr_roof, w_street = berlin_w_street,
 #'              w_build = berlin_w_build)
-#' print.upar(ucps)
-#' ucps                       # also calls print.ucps
-print.upar <- function(ucp) {
-  stopifnot(class(ucp) == "upar")
+#' # calls print.ucps
+#' print(ucps)
+print.upar <- function(x, ...) {
+  stopifnot(class(x) == "upar")
 
   cat("grid\n")
-  print(ucp$grid)
-  for (i in 2:length(ucp)) {
-    cat(paste0(names(ucp)[i]), "\n")
-    print(summary(as.vector(ucp[[i]])))
+  print(x$grid)
+  for (i in 2:length(x)) {
+    cat(paste0(names(x)[i]), "\n")
+    print(summary(as.vector(x[[i]])))
   }
 }
