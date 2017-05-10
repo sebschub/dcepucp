@@ -19,7 +19,9 @@ particular, it provides the functions
 Furthermore, the package includes an exemplary data set of Berlin,
 Germany used
 in
-[Schubert and Grossman-Clarke 2013](http://doi.org/10.1127/0941-2948/2013/0393).
+[Schubert and Grossman-Clarke 2013](http://doi.org/10.1127/0941-2948/2013/0393). The
+fields are called `berlin_*` (see below).
+
 
 Installation
 ------------
@@ -29,13 +31,15 @@ Install the package from github using the devtools package with
 # install.packages("devtools")
 devtools::install_github("sebschub/dcepucp")
 ```
- 
+If you receive the error `Installation failed: error in running
+command`, try setting `options(unzip = "unzip")` before running `install_github`.
+
+
 Usage
 -----
 
 The following shows the usage of dcepucp using the example of the
 Berlin data set:
-
 ``` r
 # generature urban grid (equivalent to berlin_grid already defined by
 # the package
