@@ -137,6 +137,16 @@ upar2nc <- function(file, ucp) {
              long_name = "building width",
              units = "m")
 
+  att.put.nc(nc, variable = "NC_GLOBAL", name = "dcepucp",
+             type = "NC_CHAR",
+             paste("dcepucp R package version", utils::packageVersion("dcepucp"),
+                   "(https://github.com/sebschub/dcepucp/)")
+             )
+  att.put.nc(nc, variable = "NC_GLOBAL", name = "creation_date",
+             type = "NC_CHAR",
+             as.character(Sys.time())
+             )
+
   # data
   var.put.nc(nc, variable = "rlon",     data = rotated_longitude(ucp$grid))
   var.put.nc(nc, variable = "rlat",     data = rotated_latitude(ucp$grid))
