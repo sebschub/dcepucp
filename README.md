@@ -1,6 +1,8 @@
 dcepucp
 =======
 
+[![Travis-CI Build Status](https://travis-ci.org/sebschub/dcepucp.svg?branch=master)](https://travis-ci.org/sebschub/dcepucp)
+
 Overview
 --------
 
