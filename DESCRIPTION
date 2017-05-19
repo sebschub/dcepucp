@@ -1,7 +1,7 @@
 Package: dcepucp
 Type: Package
 Title: Generate an urban canopy parameters file for DCEP
-Version: 0.2.1
+Version: 0.2.2
 Author: Sebastian Schubert
 Maintainer: Sebastian Schubert <sebastian.schubert@geo.hu-berlin.de>
 Description: This package facilitates the generation of a NetCDF urban canopy
