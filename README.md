@@ -1,7 +1,7 @@
 dcepucp
 =======
 
-[![Travis-CI Build Status](https://travis-ci.org/sebschub/dcepucp.svg?branch=master)](https://travis-ci.org/sebschub/dcepucp)
+[![Travis-CI Build Status](https://travis-ci.org/sebschub/dcepucp.svg?branch=master)](https://travis-ci.org/sebschub/dcepucp) [![codecov](https://codecov.io/gh/sebschub/dcepucp/branch/master/graph/badge.svg)](https://codecov.io/gh/sebschub/dcepucp)
 
 Overview
 --------
