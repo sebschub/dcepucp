@@ -19,14 +19,18 @@ berlin_uclass <- dim.inq.nc(nc, "uclass")
 close.nc(nc)
 
 berlin_grid <- ugrid(pollat = 37.483, pollon = -166.6,
-                     startlat_tot = berlin_rlat[1], startlon_tot = berlin_rlon[1],
+                     startlat_tot = round(berlin_rlat[1], 4),
+                     startlon_tot = round(berlin_rlon[1], 4),
                      ie_tot = length(berlin_rlon), je_tot = length(berlin_rlat),
-                     dlat = berlin_rlat[2] - berlin_rlat[1], dlon = berlin_rlon[2] - berlin_rlon[1],
-                     ke_uhl = length(berlin_uheight1) - 1, hhl_uhl = berlin_uheight1,
+                     dlat = round(berlin_rlat[2] - berlin_rlat[1], 4),
+                     dlon = round(berlin_rlon[2] - berlin_rlon[1], 4),
+                     ke_uhl = length(berlin_uheight1) - 1,
+                     hhl_uhl = as.vector(berlin_uheight1),
                      n_uclass = berlin_uclass$length,
-                     n_udir = length(berlin_udir), angle_udir = berlin_udir)
+                     n_udir = length(berlin_udir),
+                     angle_udir = as.vector(berlin_udir)
+                     )
 
 use_data(berlin_fr_roof, berlin_fr_uclass, berlin_fr_udir, berlin_fr_urb,
          berlin_w_build, berlin_w_street, berlin_grid,
          overwrite = TRUE)
-
