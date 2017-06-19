@@ -43,6 +43,7 @@ Usage
 The following shows the usage of dcepucp using the example of the
 Berlin data set:
 ``` r
+library(dcepucp)
 # generature urban grid (equivalent to berlin_grid already defined by
 # the package
 berlin_grid <- ugrid(pollat = 37.483, pollon = -166.6,
