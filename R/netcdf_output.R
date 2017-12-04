@@ -8,6 +8,8 @@
 #' @param standard_name String of standard name.
 #' @param long_name String of long name.
 #' @param units String of units.
+#' @param add_grid_mapping Add \code{grid_mapping} and \code{coordinates}
+#'   attributes?
 #'
 #' @importFrom RNetCDF var.def.nc att.put.nc
 #' @keywords internal
@@ -20,7 +22,9 @@
 #'                      units = "degrees")
 #' RNetCDF::var.put.nc(nc, variable ="rlon", data = 1:100)
 #' RNetCDF::close.nc(nc)
-nc_def_var <- function(nc, varname, dimensions, standard_name, long_name, units) {
+nc_def_var <- function(nc,
+                       varname, dimensions, standard_name, long_name, units,
+                       add_grid_mapping = TRUE) {
   var.def.nc(nc, varname = varname, vartype = "NC_FLOAT", dimensions = dimensions)
   att.put.nc(nc, variable = varname, name = "standard_name", type = "NC_CHAR",
              standard_name)
@@ -30,6 +34,12 @@ nc_def_var <- function(nc, varname, dimensions, standard_name, long_name, units)
              units)
   att.put.nc(nc, variable = varname, name = "_FillValue", type = "NC_FLOAT",
              -1.e+20)
+  if (add_grid_mapping) {
+    att.put.nc(nc, variable = varname, name = "grid_mapping", type = "NC_CHAR",
+               "rotated_pole")
+    att.put.nc(nc, variable = varname, name = "coordinates", type = "NC_CHAR",
+               "lon lat")
+  }
 
 }
 
@@ -62,13 +72,15 @@ upar2nc <- function(file, ucp) {
   nc_def_var(nc, varname = "rlon", dimensions = "rlon",
              standard_name = "grid_longitude",
              long_name = "rotated longitude",
-             units = "degrees")
+             units = "degrees",
+             add_grid_mapping = FALSE)
 
   dim.def.nc(nc, dimname = "rlat", dimlength = ucp$grid$je_tot)
   nc_def_var(nc, varname = "rlat", dimensions = "rlat",
              standard_name = "grid_latitude",
              long_name = "rotated latitude",
-             units = "degrees")
+             units = "degrees",
+             add_grid_mapping = FALSE)
 
   dim.def.nc(nc, dimname = "uclass", dimlength = ucp$grid$n_uclass)
 
@@ -76,22 +88,26 @@ upar2nc <- function(file, ucp) {
   nc_def_var(nc, varname = "udir", dimensions = "udir",
              standard_name = "street_direction",
              long_name = "street direction",
-             units = "degrees")
+             units = "degrees",
+             add_grid_mapping = FALSE)
 
   dim.def.nc(nc, dimname = "uheight1", dimlength = ucp$grid$ke_uhl + 1)
   nc_def_var(nc, varname = "uheight1", dimensions = "uheight1",
              standard_name = "urban_height_half_level",
              long_name = "height above surface for half levels",
-             units = "m")
+             units = "m",
+             add_grid_mapping = FALSE)
 
   nc_def_var(nc, varname = "lon", dimensions = c("rlon", "rlat"),
              standard_name = "longitude",
              long_name = "longitude",
-             units = "degrees_east")
+             units = "degrees_east",
+             add_grid_mapping = FALSE)
   nc_def_var(nc, varname = "lat", dimensions = c("rlon", "rlat"),
              standard_name = "latitude",
              long_name = "latitude",
-             units = "degrees_north")
+             units = "degrees_north",
+             add_grid_mapping = FALSE)
 
   var.def.nc(nc, varname = "rotated_pole", vartype = "NC_CHAR", dimensions = NA)
   att.put.nc(nc, variable = "rotated_pole", name = "long_name",

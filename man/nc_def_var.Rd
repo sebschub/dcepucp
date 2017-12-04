@@ -4,7 +4,8 @@
 \alias{nc_def_var}
 \title{Define NetCDF variable with standard attributes}
 \usage{
-nc_def_var(nc, varname, dimensions, standard_name, long_name, units)
+nc_def_var(nc, varname, dimensions, standard_name, long_name, units,
+  add_grid_mapping = TRUE)
 }
 \arguments{
 \item{nc}{NetCDF file object.}
@@ -18,6 +19,9 @@ nc_def_var(nc, varname, dimensions, standard_name, long_name, units)
 \item{long_name}{String of long name.}
 
 \item{units}{String of units.}
+
+\item{add_grid_mapping}{Add \code{grid_mapping} and \code{coordinates}
+attributes?}
 }
 \description{
 The variable is defined and attributes used in COSMO-CLM are added.
