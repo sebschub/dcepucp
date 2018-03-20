@@ -18,6 +18,26 @@ berlin_udir <- var.get.nc(nc, "udir", collapse = FALSE)
 berlin_uclass <- dim.inq.nc(nc, "uclass")
 close.nc(nc)
 
+# change convention from angle 0 south to angle 0 north
+swap_udir <- function(field) {
+  temp <- field
+  if (length(dim(field)) == 4) {
+    field[ , , 1, ] <- temp[ , , 3, ]
+    field[ , , 3, ] <- temp[ , , 1, ]
+  } else if (length(dim(field)) == 5) {
+    field[ , , , 1, ] <- temp[ , , , 3, ]
+    field[ , , , 3, ] <- temp[ , , , 1, ]
+  } else {
+    stop("Wrong dimensions of field")
+  }
+  field
+}
+
+berlin_fr_roof  <- swap_udir(berlin_fr_roof)
+berlin_fr_udir  <- swap_udir(berlin_fr_udir)
+berlin_w_build  <- swap_udir(berlin_w_build)
+berlin_w_street <- swap_udir(berlin_w_street)
+
 berlin_grid <- ugrid(pollat = 37.483, pollon = -166.6,
                      startlat_tot = round(berlin_rlat[1], 4),
                      startlon_tot = round(berlin_rlon[1], 4),
