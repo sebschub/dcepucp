@@ -25,6 +25,6 @@ Modify one or several parameters of one Local Climate Zones. The values are
 checked for consistency with the valid LCZ range.
 }
 \examples{
-set_lcz_settings("Compact high-rise", h2w = 3)
-show_lcz_classes()
+lcz <- set_lcz_parameter(lcz_default, "Compact high-rise", h2w = 3)
+lcz
 }

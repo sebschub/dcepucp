@@ -31,5 +31,5 @@ hhl_uhl = c(0, 5, 10, 15),
 n_uclass = 1,
 n_udir = 4, angle_udir = c(-45., 0., 45., 90.))
 
-up <- upar_lcz(berlin_grid, lcz, maps = list("Open low-rise" = array(1, c(4,5))))
+up <- upar_lcz(berlin_grid, lcz_default, maps = list("Open low-rise" = array(1, c(4,5))))
 }

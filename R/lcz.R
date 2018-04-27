@@ -96,8 +96,8 @@ print.lcz <- function(x, ...) {
 #' @export
 #'
 #' @examples
-#' set_lcz_settings("Compact high-rise", h2w = 3)
-#' show_lcz_classes()
+#' lcz <- set_lcz_parameter(lcz_default, "Compact high-rise", h2w = 3)
+#' lcz
 set_lcz_parameter <- function(lcz, lcz_name, h2w = NULL, fr_build = NULL, fr_street = NULL,
                              height = NULL) {
 
@@ -141,7 +141,7 @@ set_lcz_parameter <- function(lcz, lcz_name, h2w = NULL, fr_build = NULL, fr_str
 #' n_uclass = 1,
 #' n_udir = 4, angle_udir = c(-45., 0., 45., 90.))
 #'
-#' up <- upar_lcz(berlin_grid, lcz, maps = list("Open low-rise" = array(1, c(4,5))))
+#' up <- upar_lcz(berlin_grid, lcz_default, maps = list("Open low-rise" = array(1, c(4,5))))
 upar_lcz <- function(grid, lcz, maps, mode = "dominant_class") {
 
   stopifnot(class(grid) == "ugrid")

@@ -77,3 +77,10 @@
 #' @source From \href{http://doi.org/10.1127/0941-2948/2013/0393}{Schubert and
 #'   Grossman-Clarke 2013}.
 "berlin_grid"
+
+#' Default LCZ parameter
+#'
+#' Default Local Climate Zones parameter.
+#'
+#' @format Object of class \code{lcz}.
+"lcz_default"
