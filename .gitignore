@@ -4,3 +4,4 @@
 .Ruserdata
 *~
 README.html
+tests/testthat/test.nc
