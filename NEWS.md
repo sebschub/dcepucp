@@ -1,3 +1,7 @@
+# dcepucp 0.2.99
+
+* Add derivation of urban parameters from Local Climate Zones information
+
 # dcepucp 0.2.5
 
 * Changed street direction convention in example data: angle increases
