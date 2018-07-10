@@ -4,8 +4,9 @@
 \alias{ugrid}
 \title{Define an urban grid}
 \usage{
-ugrid(pollat, pollon, dlat, dlon, startlat_tot, startlon_tot, ie_tot, je_tot,
-  ke_uhl, hhl_uhl, n_uclass = 1, n_udir = 2, angle_udir = c(0, 90))
+ugrid(pollat, pollon, polgam = 0, dlat, dlon, startlat_tot, startlon_tot,
+  ie_tot, je_tot, ke_uhl, hhl_uhl, n_uclass = 1, n_udir = 2,
+  angle_udir = c(0, 90))
 }
 \arguments{
 \item{pollat}{Geographical latitude of the rotated north pole (in degrees,
@@ -13,6 +14,9 @@ north >0); for a non-rotated lat-lon grid set \code{pollat = 90}.}
 
 \item{pollon}{Geographical longitude of the rotated north pole (in degrees,
 east >0); for a non-rotated lat-lon grid set \code{pollon = -180}.}
+
+\item{polgam}{Angle between the north poles of two rotated grids (in degrees,
+east > 0)}
 
 \item{dlat}{'Meridional' (rotated lat-direction) grid spacing (in degrees).}
 

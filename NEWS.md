@@ -1,3 +1,7 @@
+# dcepucp 0.2.6
+
+* Added `polgam` argument to `ugrid`
+
 # dcepucp 0.2.5
 
 * Changed street direction convention in example data: angle increases
