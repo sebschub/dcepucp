@@ -1,3 +1,7 @@
+# dcepucp 0.2.7
+
+* Corrected metadata of fr_udir in NetCDF output
+
 # dcepucp 0.2.6
 
 * Added `polgam` argument to `ugrid`
