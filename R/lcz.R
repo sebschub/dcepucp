@@ -55,6 +55,7 @@ print.lcz <- function(x, ...) {
   # all LCZ classes
   for (i_class in seq_along(lcz_ranges)) {
 
+    cat(paste0("LCZ ", sprintf("%2d", i_class), ": "))
     name_class <- names(lcz_ranges)[i_class]
     cat(name_class)
     cat("\n")
