@@ -134,8 +134,8 @@ upar2nc <- function(file, ucp) {
              units = "1")
 
   nc_def_var(nc, varname = "FR_UDIR", dimensions = c("rlon", "rlat", "udir", "uclass"),
-             standard_name = "fraction_urban_classes",
-             long_name = "fraction of urban classes",
+             standard_name = "fraction_street_direction",
+             long_name = "fraction of street directions",
              units = "1")
 
   nc_def_var(nc, varname = "FR_ROOF", dimensions = c("rlon", "rlat", "uheight1", "udir", "uclass"),

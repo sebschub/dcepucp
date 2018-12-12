@@ -7,6 +7,8 @@
 #'   north >0); for a non-rotated lat-lon grid set \code{pollat = 90}.
 #' @param pollon Geographical longitude of the rotated north pole (in degrees,
 #'   east >0); for a non-rotated lat-lon grid set \code{pollon = -180}.
+#' @param polgam Angle between the north poles of two rotated grids (in degrees,
+#'   east > 0)
 #' @param dlat 'Meridional' (rotated lat-direction) grid spacing (in degrees).
 #' @param dlon 'Zonal' (rotated lon-direction) grid spacing (in degrees).
 #' @param startlat_tot Latitude of the lower left scalar grid point of the total
@@ -42,7 +44,7 @@
 #'               ke_uhl = 8, hhl_uhl = c(0, 5, 10, 15, 20, 25, 30, 35,40),
 #'               n_uclass = 1,
 #'               n_udir = 2, angle_udir = c(0., 90.))
-ugrid <- function(pollat, pollon,
+ugrid <- function(pollat, pollon, polgam = 0.,
                   dlat, dlon, startlat_tot, startlon_tot, ie_tot, je_tot,
                   ke_uhl, hhl_uhl,
                   n_uclass = 1, n_udir = 2, angle_udir = c(0., 90.)) {
@@ -63,7 +65,7 @@ ugrid <- function(pollat, pollon,
   stopifnot(n_udir >= 0.)
   stopifnot(length(angle_udir) == n_udir, diff(angle_udir) > 0.)
 
-  structure(list(pollat = pollat, pollon = pollon,
+  structure(list(pollat = pollat, pollon = pollon, polgam = polgam,
                  dlat = dlat, dlon = dlon,
                  startlat_tot = startlat_tot, startlon_tot = startlon_tot,
                  ie_tot = ie_tot, je_tot = je_tot,
@@ -95,10 +97,11 @@ ugrid <- function(pollat, pollon,
 print.ugrid <- function(x, ...) {
   stopifnot(class(x) == "ugrid")
 
-  out1 <- format(c(x$pollat, x$pollon))
+  out1 <- format(c(x$pollat, x$pollon, x$polgam))
   cat("   # Rotated pole coordinates\n")
   cat(paste0("   Latitude:  ", out1[2], "\n"))
   cat(paste0("   Longitude: ", out1[1], "\n"))
+  cat(paste0("   Gamma:     ", out1[3], "\n"))
 
   out2 <- format(c(x$dlat, x$dlon))
   out3 <- format(c(x$startlat_tot, x$startlon_tot))
@@ -203,10 +206,11 @@ latitude <- function(grid) {
   rlon <- ifelse(rlon > 180., rlon - 360., rlon)
 
   asind(
-    cosd(grid$pollat) * cosd(rlon)           %o% cosd(rlat) +
-    sind(grid$pollat) * rep(1., grid$ie_tot) %o% sind(rlat)
+    cosd(grid$pollat) *
+      (cosd(grid$polgam)*cosd(rlon) - sind(grid$polgam)*sind(rlon)) %o% cosd(rlat) +
+    sind(grid$pollat) *
+      rep(1., grid$ie_tot)                                          %o% sind(rlat)
   )
-
 }
 
 #' Geographical longitude
@@ -235,16 +239,24 @@ longitude <- function(grid) {
 
   rlon <- ifelse(rlon > 180., rlon - 360., rlon)
 
-  arg1 <- sind(grid$pollon) *
-    (-sind(grid$pollat) * cosd(rlon)           %o% cosd(rlat) +
-      cosd(grid$pollat) * rep(1., grid$ie_tot) %o% sind(rlat)
-     ) -
-    cosd(grid$pollon)   * sind(rlon)           %o% cosd(rlat)
-  arg2 <- cosd(grid$pollon) *
-    (-sind(grid$pollat) * cosd(rlon)           %o% cosd(rlat) +
-      cosd(grid$pollat) * rep(1., grid$ie_tot) %o% sind(rlat)
-     ) +
-    sind(grid$pollon)   * sind(rlon) %o% cosd(rlat)
+  arg1 <-
+    sind(grid$pollon) *
+    (-sind(grid$pollat) *
+       (cosd(rlon)*cosd(grid$polgam) - sind(rlon)*sind(grid$polgam)) %o% cosd(rlat) +
+      cosd(grid$pollat) *
+       rep(1., grid$ie_tot)                                          %o% sind(rlat)
+    ) -
+    cosd(grid$pollon) *
+       (sind(rlon)*cosd(grid$polgam) + cosd(rlon)*sind(grid$polgam)) %o% cosd(rlat)
+  arg2 <-
+    cosd(grid$pollon) *
+    (-sind(grid$pollat) *
+       (cosd(rlon)*cosd(grid$polgam) - sind(rlon)*sind(grid$polgam)) %o% cosd(rlat) +
+      cosd(grid$pollat) *
+       rep(1., grid$ie_tot)                                          %o% sind(rlat)
+    ) +
+    sind(grid$pollon) *
+       (sind(rlon)*cosd(grid$polgam) + cosd(rlon)*sind(grid$polgam)) %o% cosd(rlat)
 
   ifelse(arg2 == 0.0, 1.e-20, arg2)
 

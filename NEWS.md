@@ -2,6 +2,14 @@
 
 * Add derivation of urban parameters from Local Climate Zones information
 
+# dcepucp 0.2.7
+
+* Corrected metadata of fr_udir in NetCDF output
+
+# dcepucp 0.2.6
+
+* Added `polgam` argument to `ugrid`
+
 # dcepucp 0.2.5
 
 * Changed street direction convention in example data: angle increases
