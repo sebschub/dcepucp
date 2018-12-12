@@ -232,13 +232,14 @@ upar_lcz <- function(grid, lcz, dominant_class = NULL, class_fractions = NULL) {
         dominant_class[i, j] <- which(names(lcz) == lcz_names[which.max(class_fractions[i, j, ])])
       }
     }
-  } else if (!is.null(class_fractions)) {
+  } else if (!is.null(dominant_class)) {
 
     for (i in 1:grid$ie_tot) {
       for (j in 1:grid$je_tot) {
         # fr_urb based on given class
-        if (!is.na(class[i,j])) {
-          fr_urb[i,j] <- lcz[[ class[i,j] ]]$fr_build + lcz[[ class[i,j] ]]$fr_street
+        if (!is.na(dominant_class[i,j])) {
+          fr_urb[i,j] <- lcz[[ dominant_class[i,j] ]]$fr_build +
+                         lcz[[ dominant_class[i,j] ]]$fr_street
         }
       }
     }
