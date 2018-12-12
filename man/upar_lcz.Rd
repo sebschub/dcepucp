@@ -4,22 +4,29 @@
 \alias{upar_lcz}
 \title{Generate DCEP paramters from LCZ maps}
 \usage{
-upar_lcz(grid, lcz, maps, mode = "dominant_class")
+upar_lcz(grid, lcz, dominant_class = NULL, class_fractions = NULL)
 }
 \arguments{
-\item{grid}{Object of class \code{ugrid}.}
+\item{grid}{Grid specifications, object of class \code{ugrid}.}
 
-\item{lcz}{Object of class \code{lcz}.}
+\item{lcz}{LCZ parameters, object of class \code{lcz}.}
 
-\item{maps}{LCZ maps}
+\item{dominant_class}{Map of dominant class of each grid cell.}
 
-\item{mode}{Mode}
+\item{class_fractions}{List of maps, each describing the fraction of urban
+local climate zones.}
 }
 \value{
 An object of class \code{upar}.
 }
 \description{
-Generate DCEP paramters from LCZ maps
+The parameters can be derived either from a map of the dominant class or a
+list of fractions of local climate zones.
+}
+\details{
+Either an argument for \code{dominent_class} or for
+  \code{class_fraction} has to be supplied. Currently, only one urban class
+  is supported.
 }
 \examples{
 berlin_grid <- ugrid(pollat = 37.483, pollon = -166.6,
@@ -31,5 +38,5 @@ hhl_uhl = c(0, 5, 10, 15),
 n_uclass = 1,
 n_udir = 4, angle_udir = c(-45., 0., 45., 90.))
 
-up <- upar_lcz(berlin_grid, lcz_default, maps = list("Open low-rise" = array(1, c(4,5))))
+up <- upar_lcz(berlin_grid, lcz_default, class_fractions = list("Open low-rise" = array(1, c(4,5))))
 }

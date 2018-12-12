@@ -4,8 +4,9 @@
 \alias{ugrid}
 \title{Define an urban grid}
 \usage{
-ugrid(pollat, pollon, dlat, dlon, startlat_tot, startlon_tot, ie_tot, je_tot,
-  ke_uhl, hhl_uhl, n_uclass = 1, n_udir = 2, angle_udir = c(0, 90))
+ugrid(pollat, pollon, dlat, dlon, startlat_tot, startlon_tot, ie_tot,
+  je_tot, ke_uhl, hhl_uhl, n_uclass = 1, n_udir = 2,
+  angle_udir = c(0, 90))
 }
 \arguments{
 \item{pollat}{Geographical latitude of the rotated north pole (in degrees,
